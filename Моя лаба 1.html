@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Данные учащихся</title>
+		<meta charset="utf-8"/>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<table>
+			<tr class="table-head">
+				<th>№</th>
+				<th>Фамилия</th>
+				<th>Имя</th>
+				<th>Отчество</th>
+				<th>Учебная группа</th>
+				<th>E-mail</th>
+				<th>Номер телефона</th>
+				<th>Дата рождения</th>
+				<th>Изменить данные</th>
+				<th>Удалить данные</th>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>Реутова</td>
+				<td>Валерия</td>
+				<td>Алексеевна</td>
+				<td>ЦПИ-11</td>
+				<td>lera.reutova.03@mail.ru</td>
+				<td>+79969270298</td>
+				<td>09.04.2003</td>
+				<td><a class="izm">изменить</a></td>
+				<td><a class="del" >удалить</a></td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>Разгулова</td>
+				<td>Елена</td>
+				<td>Игоревна</td>
+				<td>ЦПИ-11</td>
+				<td>lenok.bts.love@gmail.com</td>
+				<td>+79959264593</td>
+				<td>25.12.2002</td>
+				<td><a class="izm">изменить</a></td>
+				<td><a class="del" >удалить</a></td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>Андреев</td>
+				<td>Егор</td>
+				<td>Сергеевич</td>
+				<td>ЦПИ-11</td>
+				<td>philrec@yandex.ru</td>
+				<td>+79051507960</td>
+				<td>07.12.2003</td>
+				<td><a class="izm" >изменить</a></td>
+				<td><a class="del" >удалить</a></td>
+			</tr>
+		</table>
+		<br>
+		
+		<input class="dob" type="button"  value="добавить студента">
+
+		<form class="new-form" id="Newform"> 
+			<center><h3>Заполните форму с новыми данными</h3></center>
+				<input type="text" value="" placeholder=""> Фамилия <br>
+				<input type="text" value="" placeholder=""> Имя<br>
+				<input type="text" value="" placeholder=""> Отчество<br>
+				<input type="text" value="" placeholder=""> Учебная группа<br>
+				<input type="email" value="" placeholder=""> E-mail<br>
+				<input type="tel" value="" placeholder="+7(xxx)xxx-xx-xx"> Номер телефона<br>
+				<input type="date" value="" > Дата рождения<br><br>
+				<input type="button" value="сохранить">
+				<button class="close cancel" type="button">X</button>
+		</form>
+
+		<form class="izm-form" id="Izmform"> 
+					<center><h3>Измените необходимые данные</h3></center>
+						<input type="text" value="" placeholder=""> Фамилия <br>
+						<input type="text" value="" placeholder=""> Имя<br>
+						<input type="text" value="" placeholder=""> Отчество<br>
+						<input type="text" value="" placeholder=""> Учебная группа<br>
+						<input type="email" value="" placeholder=""> E-mail<br>
+						<input type="tel" value="" placeholder="+7(xxx)xxx-xx-xx"> Номер телефона<br>
+						<input type="date" value="" > Дата рождения<br><br>
+						<input type="button" value="сохранить">
+						<button class="close cancel" type="button">X</button>
+		</form>
+		
+		<form class="ud" id="Udform">
+			<center><h3>Вы действительно хотите УДАЛИТЬ данные?</h3></center>
+			<center> <input class="yes" type="button" value="Да">
+			<input class="no" type="button" value="Нет"></center>
+			<button class="close1 cancel" type="button">x</button>
+		</form>
+		
+		<script>
+function showNewform(){
+	document.getElementById("Newform").style.display = "block" // Находит ID Newform и отображает его с помощью параметра стиля display.
+	}
+
+function showIzmform(){
+	document.getElementById("Izmform").style.display = "block" // Находит ID Izmform и отображает его с помощью параметра стиля display.
+	}
+function showUdform(){
+	document.getElementById("Udform").style.display = "block" // Находит ID Udform и отображает его с помощью параметра стиля display.
+	}
+	
+// Скрывает мои открытые блоки с помощью параметра стиля display.
+function hide(){
+	document.getElementById("Newform").style.display = "none"
+	document.getElementById("Izmform").style.display = "none"
+	document.getElementById("Udform").style.display = "none"
+	}
+	
+// При клике на любой объект с классом .izm вызовется функция showIzmform.
+for (let izmElement of document.getElementsByClassName("izm")){
+	izmElement.addEventListener("click", hide);
+	izmElement.addEventListener("click", showIzmform)
+	}
+
+// При клике на любой объект с классом .del вызовется функция showUdform.
+for (let delElement of document.getElementsByClassName("del")){
+	delElement.addEventListener("click", hide);
+	delElement.addEventListener("click", showUdform)
+	}
+
+// При клике на любой объект с классом .dob вызовется функция showNewform.
+for (let dobElement of document.getElementsByClassName("dob")){
+	dobElement.addEventListener("click", hide);
+	dobElement.addEventListener("click", showNewform)
+	}
+
+// При клике на любой объект с классом .cancel вызовется функция hide.
+for (let cancelElement of document.getElementsByClassName("cancel")){
+	cancelElement.addEventListener("click", hide)
+	}
+
+</script>
+	</body>
+</html>
