@@ -95,42 +95,31 @@
 		
 		<script>
 function showNewform(){
-	document.getElementById("Newform").style.display = "block" // Находит ID Newform и отображает его с помощью параметра стиля display.
+	document.getElementById("Newform").style.display = "block" 
 	}
-
 function showIzmform(){
-	document.getElementById("Izmform").style.display = "block" // Находит ID Izmform и отображает его с помощью параметра стиля display.
+	document.getElementById("Izmform").style.display = "block" 
 	}
 function showUdform(){
-	document.getElementById("Udform").style.display = "block" // Находит ID Udform и отображает его с помощью параметра стиля display.
+	document.getElementById("Udform").style.display = "block" 
 	}
-	
-// Скрывает мои открытые блоки с помощью параметра стиля display.
 function hide(){
 	document.getElementById("Newform").style.display = "none"
 	document.getElementById("Izmform").style.display = "none"
 	document.getElementById("Udform").style.display = "none"
 	}
-	
-// При клике на любой объект с классом .izm вызовется функция showIzmform.
 for (let izmElement of document.getElementsByClassName("izm")){
 	izmElement.addEventListener("click", hide);
 	izmElement.addEventListener("click", showIzmform)
 	}
-
-// При клике на любой объект с классом .del вызовется функция showUdform.
 for (let delElement of document.getElementsByClassName("del")){
 	delElement.addEventListener("click", hide);
 	delElement.addEventListener("click", showUdform)
 	}
-
-// При клике на любой объект с классом .dob вызовется функция showNewform.
 for (let dobElement of document.getElementsByClassName("dob")){
 	dobElement.addEventListener("click", hide);
 	dobElement.addEventListener("click", showNewform)
 	}
-
-// При клике на любой объект с классом .cancel вызовется функция hide.
 for (let cancelElement of document.getElementsByClassName("cancel")){
 	cancelElement.addEventListener("click", hide)
 	}
