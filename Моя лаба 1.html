@@ -94,36 +94,156 @@
 		</form>
 		
 		<script>
+
 function showNewform(){
 	document.getElementById("Newform").style.display = "block" 
 	}
 function showIzmform(){
 	document.getElementById("Izmform").style.display = "block" 
 	}
-function showUdform(){
-	document.getElementById("Udform").style.display = "block" 
+
+
+for (let delElement of document.getElementsByClassName("del")){
+	delElement.addEventListener("click", hide);
+	delElement.addEventListener("click", showUdform)
+	}	
+
+function showUdform(str){
+	document.getElementById("Udform").style.display = "block";
+	var daBtn = document.querySelector(".yes");
+	daBtn.onclick = function (e) {
+	str.remove();
+	hide();
+	};
 	}
+	
+	
+var deleteBtns = document.querySelectorAll(".del");
+deleteBtns.forEach((btn) => {
+btn.addEventListener("click", function (e) {
+e.preventDefault();
+var stroka = e.target.parentElement.parentElement;
+showUdform(stroka);
+});
+});
+	
+	
 function hide(){
 	document.getElementById("Newform").style.display = "none"
 	document.getElementById("Izmform").style.display = "none"
 	document.getElementById("Udform").style.display = "none"
 	}
+
 for (let izmElement of document.getElementsByClassName("izm")){
 	izmElement.addEventListener("click", hide);
 	izmElement.addEventListener("click", showIzmform)
 	}
-for (let delElement of document.getElementsByClassName("del")){
-	delElement.addEventListener("click", hide);
-	delElement.addEventListener("click", showUdform)
-	}
+
 for (let dobElement of document.getElementsByClassName("dob")){
 	dobElement.addEventListener("click", hide);
 	dobElement.addEventListener("click", showNewform)
 	}
+
 for (let cancelElement of document.getElementsByClassName("cancel")){
 	cancelElement.addEventListener("click", hide)
 	}
 
+for (let udalElement of document.getElementsByClassName("no")){
+	udalElement.addEventListener("click", hide)
+	}
+	
+
+var CurRow
+
+document.querySelector(".sohr").onclick = function () {
+document.getElementById("table").style.display = "block";
+
+var table = document.querySelector("table");
+var row = table.insertRow(-1);
+var F = row.insertCell(0);
+var I = row.insertCell(1);
+var O = row.insertCell(2);
+var group = row.insertCell(3);
+var email = row.insertCell(4);
+var nomber = row.insertCell(5);
+var hb = row.insertCell(6);
+var izmBtnBlock = row.insertCell(7);
+var udBtnBlock = row.insertCell(8);
+
+var deleteBtn = document.createElement("input")
+deleteBtn.classList.add("Newform")
+deleteBtn.setAttribute("type", "button")
+deleteBtn.setAttribute("value", "Удалить")
+deleteBtn.addEventListener("click", function (e) {
+var stroka = e.target.parentElement.parentElement;
+showUdform(stroka);
+})
+
+var changeBtn = document.createElement("input")
+changeBtn.classList.add("Izmform")
+changeBtn.setAttribute("type", "button")
+changeBtn.setAttribute("value", "Изменить")
+changeBtn.addEventListener("click", function (e) {
+changeForm.style.display = "block"
+CurRow = changeBtn.parentElement.parentElement
+console.log(CurRow.children)
+insertData(CurRow.children)
+})
+
+izmBtnBlock.append(changeBtn)
+F.innerHTML = document.querySelector("input[name = 'F']").value;
+I.innerHTML = document.querySelector("input[name = 'I']").value;
+O.innerHTML = document.querySelector("input[name = 'O']").value;
+group.innerHTML = document.querySelector("input[name = 'group']").value;
+email.innerHTML = document.querySelector("input[name = 'email']").value;
+nomber.innerHTML = document.querySelector("input[name = 'tel']").value;
+hb.innerHTML = document.querySelector("input[name = 'date']").value;
+hide()
+
+udBtnBlock.append(deleteBtn)
+F.innerHTML = document.querySelector("input[name = 'F']").value;
+I.innerHTML = document.querySelector("input[name = 'I']").value;
+O.innerHTML = document.querySelector("input[name = 'O']").value;
+group.innerHTML = document.querySelector("input[name = 'group']").value;
+email.innerHTML = document.querySelector("input[name = 'email']").value;
+nomber.innerHTML = document.querySelector("input[name = 'tel']").value;
+hb.innerHTML = document.querySelector("input[name = 'date']").value;
+hide()
+}
+
+var changeBtns = document.querySelectorAll(".izm")
+var changeForm = document.querySelector("#Izmform")
+var changeFormSubmitBtn = document.querySelector(".sohranit")
+
+
+changeBtns.forEach(btn => {
+btn.addEventListener("click", e => {
+changeForm.style.display = "block"
+CurRow = btn.parentElement.parentElement
+insertData(CurRow.children)
+})
+})
+
+changeFormSubmitBtn.addEventListener("click", e => {
+var allInputs = changeForm.querySelectorAll("input")
+console.log(allInputs)
+for (let i = 0; i < CurRow.childElementCount - 2; i++) {
+console.log(CurRow.children[i], allInputs[i])
+CurRow.children[i].textContent = allInputs[i].value
+hide()
+}
+})
+
+function insertData(data) {
+console.log(data)
+changeForm.querySelector("input[name = 'F']").value = data[0].textContent
+changeForm.querySelector("input[name = 'I']").value = data[1].textContent
+changeForm.querySelector("input[name = 'O']").value = data[2].textContent
+changeForm.querySelector("input[name = 'group']").value = data[3].textContent
+changeForm.querySelector("input[name = 'email']").value = data[4].textContent
+changeForm.querySelector("input[name = 'tel']").value = data[5].textContent
+changeForm.querySelector("input[name = 'date']").value = data[6].textContent
+}
 </script>
 	</body>
 </html>
